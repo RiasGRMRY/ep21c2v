@@ -1,3 +1,5 @@
+import bolt
+
 class Kosar:
     """
     Egyetlen vásárlás adatait kezelő osztály.
@@ -7,47 +9,56 @@ class Kosar:
         - a vásárlás összege
     """
 
-    def __init__(self, termekek: dict[str, int]) -> None:
-        """
-        A kosár létrehozásakor beállítja az osztály attribútumait.
-        """
+    def __init__(self, termekek: dict[str, int], osszeg: int) -> None:
+        self.termekek = termekek
+        self.osszeg = osszeg
         pass
 
     def osszeg_lekerdezese(self) -> int:
-        """
-        A vásárlás összegének lekérdezése.
 
-        :return: A vásárlás összege Ft-ban.
-        """
+        osszeg = 0
+
+        for i in self.termekek:
+            if self.termekek[i] > 3:
+                osszeg += 1000 + 900 + ((self.termekek[i] - 2) * 800)
+            elif self.termekek[i] == 2:
+                osszeg += 1900
+            else:
+                osszeg += 1000
+        return osszeg
         pass
 
     def termekek_lekerdezese(self) -> dict[str, int]:
-        """
-        Az árucikk-mennyiség párok lekérdezése.
 
-        :return: Az árucikkek nevei és mennyiségei.
-        """
+        vasarlasok = {}
+        for i in self.termekek:
+            vasarlasok[i] = self.termekek[i]
+        return vasarlasok
+
         pass
 
     def termekek_szamanak_lekerdezese(self) -> int:
-        """
-        A kosárban lévő termékek számának lekérdezése.
 
-        :return: Hány darab termék van a kosárban.
-        """
+        ossz = 0
+        for i in self.termekek:
+            ossz += self.termekek[i]
+        return ossz
+
         pass
 
     def arucikk_mennyisegenek_lekerdezese(self, arucikk: str) -> int:
-        """
-        Egy árucikknek a kosárban megtalálható mennyiségének lekérdezése.
 
-        :param arucikk: A vizsgált árucikk neve.
-        :return: A vizsgált árucikk mennyisége a kosárban.
-        """
+        for i in self.termekek:
+            if arucikk not in self.termekek:
+                return 0
+            else:
+                return self.termekek[arucikk]
+
         pass
 
     def kosar_tartalmanak_kiiratasa(self) -> None:
-        """
-        Kiírja a kosár tartalmát a konzolra.
-        """
+
+        print("A kosárnak a tartalma:")
+        for i in self.termekek:
+            print(f"\t{self.termekek[i]} {i}")
         pass
