@@ -16,24 +16,9 @@ class Kosar:
 
     def osszeg_lekerdezese(self) -> int:
 
-        osszeg = 0
-
-        for i in self.termekek:
-            if self.termekek[i] > 3:
-                osszeg += 1000 + 900 + ((self.termekek[i] - 2) * 800)
-            elif self.termekek[i] == 2:
-                osszeg += 1900
-            else:
-                osszeg += 1000
-        return osszeg
         pass
 
     def termekek_lekerdezese(self) -> dict[str, int]:
-
-        vasarlasok = {}
-        for i in self.termekek:
-            vasarlasok[i] = self.termekek[i]
-        return vasarlasok
 
         pass
 
@@ -58,7 +43,4 @@ class Kosar:
 
     def kosar_tartalmanak_kiiratasa(self) -> None:
 
-        print("A kosárnak a tartalma:")
-        for i in self.termekek:
-            print(f"\t{self.termekek[i]} {i}")
         pass
